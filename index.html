@@ -6,11 +6,7 @@
       (function () {
         var p = location.pathname || "/";
         window.__RB =
-          p === "/quote" || p.indexOf("/quote/") === 0
-            ? "/quote"
-            : location.hostname.indexOf("softpromis") >= 0
-              ? "/quote"
-              : "";
+          p === "/quote" || p.indexOf("/quote/") === 0 ? "/quote" : "";
         var href = window.__RB ? window.__RB + "/" : "/";
         document.write('<base href="' + href + '">');
       })();
