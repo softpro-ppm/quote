@@ -55,6 +55,25 @@ class Handler(SimpleHTTPRequestHandler):
             p = p.rstrip("/") or "/"
         return p
 
+    def _strip_quote_base(self, url_path: str) -> str:
+        """Mirror Hostinger public_html/quote: allow http://127.0.0.1:8765/quote/... locally."""
+        if url_path == "/quote" or url_path.startswith("/quote/"):
+            rest = url_path[len("/quote") :] or "/"
+            if not rest.startswith("/"):
+                rest = "/" + rest
+            return rest
+        return url_path
+
+    def translate_path(self, path):
+        clean = path.split("?", 1)[0].split("#", 1)[0]
+        url_path = clean or "/"
+        if len(url_path) > 1:
+            url_path = url_path.rstrip("/") or "/"
+        if not url_path.startswith("/"):
+            url_path = "/" + url_path
+        logical = self._strip_quote_base(url_path)
+        return super().translate_path(logical)
+
     def _safe_file_path(self, url_path: str) -> Path | None:
         rel = url_path.lstrip("/")
         if not rel or rel.endswith("/"):
@@ -146,10 +165,11 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_error(404)
 
     def do_GET(self) -> None:
-        path = self._url_path()
-        if path.startswith("/api"):
+        raw = self._url_path()
+        if raw.startswith("/api"):
             self._proxy()
             return
+        path = self._strip_quote_base(raw)
         target = self._safe_file_path(path)
         if target is None:
             self.send_error(403)
@@ -200,5 +220,8 @@ if __name__ == "__main__":
             )
             raise SystemExit(1) from e
         raise
-    print("Open http://127.0.0.1:%d/ (API proxied: /api -> %s)" % (port, UPSTREAM))
+    print(
+        "Open http://127.0.0.1:%d/ or http://127.0.0.1:%d/quote/ (API proxied: /api -> %s)"
+        % (port, port, UPSTREAM)
+    )
     httpd.serve_forever()

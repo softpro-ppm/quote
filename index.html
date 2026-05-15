@@ -2,19 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/pwa/icon.svg" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/pwa/icon-192.png" />
-    <link rel="apple-touch-icon" href="/pwa/icon-192.png" />
+    <script>
+      (function () {
+        var p = location.pathname || "/";
+        window.__RB =
+          p === "/quote" || p.indexOf("/quote/") === 0
+            ? "/quote"
+            : location.hostname.indexOf("softpromis") >= 0
+              ? "/quote"
+              : "";
+        var href = window.__RB ? window.__RB + "/" : "/";
+        document.write('<base href="' + href + '">');
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="pwa/icon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="pwa/icon-192.png" />
+    <link rel="apple-touch-icon" href="pwa/icon-192.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0a3d62" />
     <title>SBI OD Quote PWA</title>
-    <link rel="stylesheet" href="/login-sbi.css" />
-    <script type="module" crossorigin src="/assets/index-CF1zL0Tt.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-y1Th8epX.css">
-  <link rel="manifest" href="/manifest.webmanifest"></head>
+    <link rel="stylesheet" href="login-sbi.css" />
+    <script type="module" crossorigin src="assets/index-CF1zL0Tt.js"></script>
+    <link rel="stylesheet" crossorigin href="assets/index-y1Th8epX.css" />
+    <link rel="manifest" href="manifest.webmanifest" />
+  </head>
   <body class="bg-slate-50 text-slate-900">
     <div id="root"></div>
   </body>
 </html>
-
-

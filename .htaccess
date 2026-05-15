@@ -1,12 +1,11 @@
-# Single Page App: serve index.html for client-side routes (React Router).
-# Upload this file to the same folder as index.html (usually public_html).
-# If the site lives in a subfolder, set RewriteBase to that path (e.g. RewriteBase /quote/)
+# SPA fallback for this folder. Place this file inside public_html/quote next to index.html.
+# Do not use RewriteBase / here — the app is deployed as a subfolder.
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /
+  RewriteBase /quote/
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
+  RewriteRule . index.html [L]
 </IfModule>
