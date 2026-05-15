@@ -1,0 +1,11 @@
+.DS_Store
+.env
+.env.*
+*.local
+node_modules/
+dist/
+.cache/
+*.log
+
+# Database dumps often contain personal data; omit from git unless you intend to
+*.sql

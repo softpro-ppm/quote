@@ -1,0 +1,250 @@
+/* Login screen — SBI-inspired palette (navy + cyan accent), works without Tailwind JIT */
+
+#sbi-login-screen.sbi-login-page {
+  --sbi-navy: #050d1a;
+  --sbi-blue: #0a3d62;
+  --sbi-blue-mid: #0d4f7c;
+  --sbi-cyan: #00a9e0;
+  --sbi-cyan-soft: #4fc3f7;
+  --sbi-card: rgba(255, 255, 255, 0.97);
+  --sbi-text: #0f172a;
+  --sbi-muted: #64748b;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 2.5rem);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+  color: var(--sbi-text);
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(0, 169, 224, 0.18), transparent 55%),
+    radial-gradient(900px 500px at 100% 20%, rgba(79, 195, 247, 0.12), transparent 50%),
+    linear-gradient(155deg, var(--sbi-navy) 0%, var(--sbi-blue) 42%, var(--sbi-blue-mid) 100%);
+  -webkit-font-smoothing: antialiased;
+}
+
+.sbi-login-grid {
+  position: relative;
+  width: 100%;
+  max-width: 28rem;
+}
+
+.sbi-login-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(48px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.sbi-login-orb--a {
+  width: 220px;
+  height: 220px;
+  background: var(--sbi-cyan);
+  top: -6rem;
+  right: -4rem;
+}
+
+.sbi-login-orb--b {
+  width: 180px;
+  height: 180px;
+  background: #1e3a5f;
+  bottom: -5rem;
+  left: -3rem;
+  opacity: 0.45;
+}
+
+.sbi-login-card {
+  position: relative;
+  border-radius: 1.25rem;
+  padding: clamp(1.75rem, 4vw, 2.25rem);
+  background: var(--sbi-card);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+  backdrop-filter: blur(12px);
+}
+
+.sbi-login-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(10, 61, 98, 0.12);
+}
+
+.sbi-login-logo-wrap {
+  flex-shrink: 0;
+}
+
+.sbi-login-logo {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: conic-gradient(from 200deg, var(--sbi-cyan), var(--sbi-blue), #0a1628, var(--sbi-cyan));
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.95), 0 8px 24px rgba(10, 61, 98, 0.35);
+  position: relative;
+}
+
+.sbi-login-logo::after {
+  content: "";
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  background: var(--sbi-card);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.sbi-login-head-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.sbi-login-title {
+  margin: 0;
+  font-size: clamp(1.35rem, 4vw, 1.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  background: linear-gradient(90deg, var(--sbi-blue) 0%, #0a1628 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sbi-login-lead {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+  color: var(--sbi-muted);
+  line-height: 1.45;
+}
+
+.sbi-login-chip {
+  margin-left: auto;
+  align-self: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sbi-blue);
+  background: linear-gradient(135deg, rgba(0, 169, 224, 0.15), rgba(10, 61, 98, 0.08));
+  border: 1px solid rgba(10, 61, 98, 0.15);
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+}
+
+@media (max-width: 380px) {
+  .sbi-login-chip {
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.sbi-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.sbi-login-error {
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.25);
+}
+
+.sbi-login-error p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #991b1b;
+  line-height: 1.4;
+}
+
+.sbi-login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.sbi-login-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--sbi-blue);
+}
+
+.sbi-login-input {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(10, 61, 98, 0.18);
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  color: var(--sbi-text);
+  background: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sbi-login-input::placeholder {
+  color: #94a3b8;
+}
+
+.sbi-login-input:hover:not(:disabled) {
+  border-color: rgba(0, 169, 224, 0.45);
+}
+
+.sbi-login-input:focus {
+  outline: none;
+  border-color: var(--sbi-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 169, 224, 0.2);
+}
+
+.sbi-login-input:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.sbi-login-submit {
+  margin-top: 0.25rem;
+  width: 100%;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, var(--sbi-blue) 0%, #072f4a 55%, var(--sbi-blue-mid) 100%);
+  box-shadow: 0 4px 14px rgba(10, 61, 98, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+}
+
+.sbi-login-submit:hover:not(:disabled) {
+  filter: brightness(1.06);
+  box-shadow: 0 6px 20px rgba(10, 61, 98, 0.5);
+}
+
+.sbi-login-submit:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.sbi-login-submit:focus-visible {
+  outline: 2px solid var(--sbi-cyan);
+  outline-offset: 2px;
+}
+
+.sbi-login-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.sbi-login-foot {
+  margin: 1.35rem 0 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--sbi-muted);
+  letter-spacing: 0.02em;
+}
