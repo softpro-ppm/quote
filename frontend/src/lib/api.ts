@@ -9,7 +9,7 @@ export const tokenStore = {
 }
 
 export const api = axios.create({
-  // Same-origin: /api is proxied to Laravel in dev and rewritten to it in prod.
+  // Same-origin /api on quote.softpromis.com (Vite proxies to Laravel in dev).
   baseURL: '/api',
   headers: { Accept: 'application/json' },
 })

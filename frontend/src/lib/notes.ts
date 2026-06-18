@@ -48,9 +48,9 @@ export const MOTOR_NOTES: CoverNote[] = [
 export const EV_NOTES: CoverNote[] = [
   MOTOR_NOTES[0],
   {
-    title: '2. Battery & Wall Charger Protection Cover',
+    title: '2. Battery Protection Cover',
     body:
-      'This add-on provides protection for electric vehicle battery-related components and wall charger accessories, subject to policy terms and conditions. It helps cover repair or replacement costs arising from accidental damage to the EV battery system, charging equipment.',
+      'This add-on provides protection for electric vehicle battery-related components, subject to policy terms and conditions. It helps cover repair or replacement costs arising from accidental damage to the EV battery system.',
   },
   { ...MOTOR_NOTES[2], title: '3. Consumables Cover' },
   { ...MOTOR_NOTES[3], title: '4. Return to Invoice Cover' },
